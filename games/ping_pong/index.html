@@ -1,0 +1,57 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1>Ping Pong</h1>
+<div>
+    <p>Player One</p>
+    <p id="player-one">0</p>
+    <button onclick="AddPoint(1)">Add Point</button>
+</div>
+<div>
+    <p>Player Two</p>
+    <p id="player-two">0</p>
+    <button onclick="AddPoint(2)">Add Point</button>
+</div>
+<script>
+    let playerOneCounter = 0;
+    let playerTwoCounter = 0;
+    let isDeuce= false;
+    let playerOneDeuceCounter = 0;
+    let playerTwoDeuceCounter = 0;
+
+    function getWinner(countOne, countTwo) {
+        if (Math.abs(countTwo - countOne) === 2) {
+            console.log("winner without player")
+        }
+    }
+
+    function AddPoint(player) {
+        if (isDeuce) {
+            if (player === 1) {
+                playerOneDeuceCounter++;
+                getWinner(playerOneDeuceCounter, playerTwoDeuceCounter)
+            } else if (player === 2) {
+                playerTwoDeuceCounter++;
+                getWinner(playerOneDeuceCounter, playerTwoDeuceCounter)
+
+            }
+
+        }
+        if (player === 1 && !isDeuce) {
+            playerOneCounter++;
+            document.getElementById('player-one').innerText = playerOneCounter
+
+        } else if (player === 2 && !isDeuce) {
+            playerTwoCounter++;
+            document.getElementById('player-two').innerText = playerTwoCounter
+        }
+        if (playerOneCounter === playerTwoCounter && playerOneCounter === 1 && playerTwoCounter === 1) {
+            console.log("Deuce");
+            isDeuce = true;
+        }
+    }
+</script>
+</body>
+</html>
